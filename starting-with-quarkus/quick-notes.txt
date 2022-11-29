@@ -1,0 +1,113 @@
+
+------------------------
+__  ____  __  _____   ___  __ ____  ______ 
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/ 
+
+------------------------
+
+JDK 11
+GraalVM 11
+Maven 3.6.3
+Docker
+IntelliJ
+
+%JAVA_HOME%
+%GRAALVM_HOME%
+%M2_HOME%
+
+------------------------
+
+mvn -U io.quarkus:quarkus-maven-plugin:create 
+-DprojectGroupId=org.seydanurdemir.quarkus.starting 
+-DprojectArtifactId=rest-book 
+-DclassName="org.seydanurdemir.quarkus.starting.BookResource" 
+-Dpath="/api/books" 
+-Dextensions="resteasy-jsonb"
+
+-Dbooks.genre=Drama
+-Dbooks.genre="Horror"
+
+------------------------
+
+books.genre=SciFci
+
+quarkus.log.category."io.quarkus".level=WARNING
+quarkus.log.category."org.agoncal".level=DEBUG
+quarkus.banner.enabled=false
+
+------------------------
+
+%dev   : mvn quarkus:dev
+%test  : mvn test
+%prod  : java -jar
+custom : -Dquarkus.profile
+
+%staging
+
+mvn quarkus:dev -Dquarkus.profile=staging
+
+------------------------
+
+%dev.quarkus.log.console.level=DEBUG
+%test.quarkus.log.console.level=TRACE
+
+%prod.books.genre=Information Technology
+%staging.books.genre=Custom
+
+------------------------
+
+JAX-RS rest
+Arc dependency injection
+
+------------------------
+
+build & execute
+
+jar        : mvn package
+             mvn package -Dquarkus.package.type=jar
+legacy jar : mvn package -Dquarkus.package.type=legacy-jar
+uber jar   : mvn package -Dquarkus.package.type=uber-jar
+native     : ./mvnw package -Pnative
+             mvn package -Dquarkus.package.type=native
+executing  : java -jar target/quarkus-app/quarkus-run.jar
+
+------------------------
+
+mvn quarkus:add-extension -Dextensions="container-image-docker"
+
+DIDN'T WORK !!!
+
+mvn package -Dquarkus.container-image.build=true -Dquarkus.package.type=jar -Dquarkus.container-image.tag=jvm
+quarkus.container-image.builder=docker
+docker build -f src/main/docker/Dockerfile.jvm -t quarkus/book-rest-api-jvm
+docker run -i --rm -p 8080:8080 quarkus/book-rest-api-jvm
+docker run -i --rm -p 8080:8080 quarkus/book-rest-api-jvm
+
+WORKED !!! IMPORTANT >>>
+
+mvn package --define quarkus.container-image.build=true
+docker run -i --rm -p 8080:8080 sdemir/book-rest-api:1.0.0-SNAPSHOT
+
+#https://github.com/quarkusio/quarkus/issues/16291
+
+------------------------
+
+------------------------
+
+.dockerignore should be so :
+
+*
+!target/*-runner
+!target/*-runner.jar
+!target/lib/*
+!target/quarkus-app/*
+
+------------------------
+
+------------------------
+
+------------------------
+
+------------------------
