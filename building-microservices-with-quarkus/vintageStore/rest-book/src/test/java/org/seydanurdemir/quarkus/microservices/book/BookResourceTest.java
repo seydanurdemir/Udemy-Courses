@@ -27,7 +27,7 @@ public class BookResourceTest {
         .when()
             .post("/api/books")
         .then()
-            .statusCode(201)
+            .statusCode(206)
             .body("isbn_13",startsWith("13-"))
             .body("title",is("Quarkus"))
             .body("author",is("Agoncal"))
