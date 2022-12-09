@@ -10,7 +10,7 @@
         <module name="rest-number" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11">
       <module name="rest-book" target="11" />
       <module name="rest-number" target="11" />
     </bytecodeTargetLevel>

@@ -1,5 +1,7 @@
 package org.seydanurdemir.quarkus.microservices.number;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -10,13 +12,19 @@ import java.time.Instant;
 import java.util.Random;
 
 @Path("/api/numbers")
+@Tag(name = "Number REST Endpoint")
 public class NumberResource {
 
     @Inject
     Logger logger;
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(
+            summary = "Generates book numbers",
+            description = "ISBN 13 and ISBN 10 numbers",
+            operationId = "generateIsbnNumbers"
+    )
     public IsbnNumbers generateIsbnNumbers() {
         IsbnNumbers isbnNumbers = new IsbnNumbers();
         isbnNumbers.isbn13 = "13-" + new Random().nextInt(100_000_000);
