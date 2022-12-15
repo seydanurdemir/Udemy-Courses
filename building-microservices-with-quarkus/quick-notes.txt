@@ -86,6 +86,7 @@ DIDN'T WORK !!!
 mvn package -Dquarkus.container-image.build=true -Dquarkus.package.type=jar -Dquarkus.container-image.tag=jvm
 quarkus.container-image.builder=docker
 docker build -f src/main/docker/Dockerfile.jvm -t quarkus/book-rest-api-jvm
+docker build . -f src/main/docker/Dockerfile.jvm -t quarkus/book-rest-api-jvm
 docker run -i --rm -p 8080:8080 quarkus/book-rest-api-jvm
 docker run -i --rm -p 8080:8080 quarkus/book-rest-api-jvm
 
@@ -151,5 +152,28 @@ mvn package -Dquarkus.package.type=native -Dquarkus.native.container-build=true 
 ! ! ! IMPORTANT
 WORKED
 mvn package -define quarkus.package.type=native -define quarkus.native.container-build=true -define maven.skip.test=true
+
+mvn package -define quarkus.package.type=native 
+			-define quarkus.native.container-build=true 
+			-define quarkus.container-image.build=true 
+			-define maven.skip.test=true
+
+------------------------
+
+docker build . -f src/main/docker/Dockerfile.jvm -t quarkus/rest-book-api-jvm
+docker run -i --rm -p 8702:8702 quarkus/rest-book-api-jvm
+
+remove-item alias:curl
+curl -X POST http://localhost:8702/api/books -d "title=Quarkus&author=Agoncal&year=2019&genre=IT"
+{"author":"Agoncal","creation_date":"2022-12-13","genre":"IT","isbn_13":"13-fallback","title":"Quarkus","year_of_publication":2019}
+
+------------------------
+
+docker build . -f src/main/docker/Dockerfile.jvm -t quarkus/rest-number-api-jvm
+docker run -i --rm -p 8701:8701 quarkus/rest-number-api-jvm
+
+remove-item alias:curl
+curl -X GET http://localhost:8701/api/numbers
+{"isbn_10":"10-85927","isbn_13":"13-86024232"}
 
 ------------------------
