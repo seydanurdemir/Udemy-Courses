@@ -1,7 +1,2 @@
 
-t
-java:S1104"RMake isbn13 a static final constant or non-public and provide accessors if needed.( ç³±ÿÿÿÿÿ8ˆÏšãÎ0
-o
-java:S1104"RMake isbn10 a static final constant or non-public and provide accessors if needed.(ì™É×8‰ÏšãÎ0
-w
-java:S1104"ZMake generationDate a static final constant or non-public and provide accessors if needed.(À½˜8‰ÏšãÎ0
+]	java:S125"<This block of commented-out lines of code should be removed.(±¾¼£şÿÿÿÿ8óÑÀ‘Ï0
