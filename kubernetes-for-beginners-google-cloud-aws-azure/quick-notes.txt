@@ -1,0 +1,81 @@
+------------------------------
+
+$ kubectl version
+
+> WARNING: This version information is deprecated and will be replaced with the output from kubectl version --short.  Use --output=yaml|json to get the full version.
+> Client Version: version.Info{Major:"1", Minor:"25", GitVersion:"v1.25.4", GitCommit:"872a965c6c6526caa949f0c6ac028ef7aff3fb78", GitTreeState:"clean", 
+  BuildDate:"2022-11-09T13:36:36Z", GoVersion:"go1.19.3", Compiler:"gc", Platform:"linux/amd64"}
+> Kustomize Version: v4.5.7
+> Server Version: version.Info{Major:"1", Minor:"25", GitVersion:"v1.25.4-gke.1600", GitCommit:"0e55ef943b612cf213ba4abfd1e6e915b9832969", GitTreeState:"clean"
+
+------------------------------
+
+$ gcloud container clusters get-credentials seyda-test-cluster --zone us-central1-a --project airy-charmer-372622Fetching cluster endpoint and auth data.
+
+> kubeconfig entry generated for seyda-test-cluster.
+
+------------------------------
+
+$ kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
+
+> deployment.apps/hello-world-rest-api created
+
+------------------------------
+
+$ kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+service/hello-world-rest-api exposed
+
+------------------------------
+
+http://35.188.37.44:8080
+
+{healthy:true}
+
+------------------------------
+
+http://35.188.37.44:8080/hello-world
+
+Hello World V1 txbzq
+
+------------------------------
+
+http://35.188.37.44:8080/hello-world-bean
+
+{"message":"Hello World"}
+
+------------------------------
+
+kubectl get events
+
+------------------------------
+
+kubectl get pod
+kubectl get pods
+
+------------------------------
+
+kubectl get replicaset
+
+------------------------------
+
+kubectl get deployment
+
+------------------------------
+
+kubectl get service
+
+------------------------------
+
+single responsibility principle
+
+kubectl create deployment -> deployment, replicaset & pod
+kubectl expose deployment -> service
+
+------------------------------
+
+kubectl get pods -o wide
+each pod has unique IP address
+a pod can contain more than one containers
+container can talk to each other using localhost
+
+------------------------------
