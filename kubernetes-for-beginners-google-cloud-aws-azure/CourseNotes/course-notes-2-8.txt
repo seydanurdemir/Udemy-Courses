@@ -1,0 +1,21 @@
+Save Your Free Credits
+In the cloud, it is best practice to delete the resources when you are not using them.
+
+
+
+If you do not want to delete and create a new cluster every time, you can reduce the cluster size to zero.
+
+
+
+After finishing your classes of the day you can reduce cluster node size to zero.
+
+gcloud container clusters resize --zone <name_of_zone> <name_of_your_cluster> --num-nodes=0
+
+
+
+When you are ready to start again, increase the number of nodes:
+
+gcloud container clusters resize --zone <name_of_zone> <name_of_your_cluster> --num-nodes=3
+
+
+
