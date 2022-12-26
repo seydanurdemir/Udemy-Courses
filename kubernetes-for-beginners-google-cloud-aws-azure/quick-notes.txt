@@ -73,9 +73,80 @@ kubectl expose deployment -> service
 
 ------------------------------
 
+pods
+
 kubectl get pods -o wide
+some kind of wrapper for containers
 each pod has unique IP address
 a pod can contain more than one containers
 container can talk to each other using localhost
 
+kubectl explain pods
+
+kubectl get pods
+(then copy pod name and paste it to the end of the next command)
+kubectl describe pod hello-world-rest-api-55d9d4c59d-txbzq
+
+namespace of pod; lets to isolate clusters, then you can separate environments like DEV, QA
+labels; you can link pods, replicasets, deployments, services by using selectors and labels
+annotations; some kind of meta information
+
+------------------------------
+
+replicasets
+
+kubectl get replicasets = kubectl get rs
+ensures the number of pods running all the times
+
+kubectl delete pods hello-world-rest-api-55d9d4c59d-txbzq
+kubectl get replicasets
+kubectl get pods
+
+[deleted pod ] hello-world-rest-api-55d9d4c59d-txbzq
+[new instance] hello-world-rest-api-55d9d4c59d-l9f7p
+
+kubectl scale deployment hello-world-rest-api --replicas=3
+kubectl get pods
+
+hello-world-rest-api-55d9d4c59d-2nsgv
+hello-world-rest-api-55d9d4c59d-7ptkb
+hello-world-rest-api-55d9d4c59d-l9f7p
+
+kubectl get events
+kubectl get events --sort-by=.metadata.creationTimestamp
+
+kubectl explain replicaset
+
+------------------------------
+
+deployment
+
+kubectl get rs -o wide
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=DUMMY_IMAGE:TEST
+kubectl get rs -o wide
+kubectl get pods
+
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
+
+------------------------------
+
+services
+
+kubectl get pods -o wide
+NAME                                    READY   STATUS    RESTARTS   AGE   IP          NODE                                                NOMINATED NODE   READINESS GATES
+hello-world-rest-api-75466dc657-9tbcr   1/1     Running   0          23m   10.0.1.6    gke-seyda-test-cluster-default-pool-7c83051e-zn4f   <none>           <none>
+hello-world-rest-api-75466dc657-fdg9r   1/1     Running   0          23m   10.0.2.11   gke-seyda-test-cluster-default-pool-7c83051e-hhzs   <none>           <none>
+hello-world-rest-api-75466dc657-prgqx   1/1     Running   0          62s   10.0.0.6    gke-seyda-test-cluster-default-pool-7c83051e-qj7p   <none>           <none>
+
+kubectl delete pods hello-world-rest-api-75466dc657-fdg9r
+
+kubectl get pods -o wide
+NAME                                    READY   STATUS    RESTARTS   AGE   IP          NODE                                                NOMINATED NODE   READINESS GATES
+hello-world-rest-api-75466dc657-9tbcr   1/1     Running   0          24m   10.0.1.6    gke-seyda-test-cluster-default-pool-7c83051e-zn4f   <none>           <none>
+hello-world-rest-api-75466dc657-p929g   1/1     Running   0          3s    10.0.2.12   gke-seyda-test-cluster-default-pool-7c83051e-hhzs   <none>           <none>
+hello-world-rest-api-75466dc657-prgqx   1/1     Running   0          2m    10.0.0.6    gke-seyda-test-cluster-default-pool-7c83051e-qj7p   <none>           <none>
+
+IP changed.
+
+------------------------------
 ------------------------------
