@@ -132,6 +132,9 @@ kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/h
 
 services
 
+allows us to receive traffic through a permanent lifetime address
+fe our IP address is http://35.188.37.44:8080/ with port 8080
+
 kubectl get pods -o wide
 NAME                                    READY   STATUS    RESTARTS   AGE   IP          NODE                                                NOMINATED NODE   READINESS GATES
 hello-world-rest-api-75466dc657-9tbcr   1/1     Running   0          23m   10.0.1.6    gke-seyda-test-cluster-default-pool-7c83051e-zn4f   <none>           <none>
@@ -146,7 +149,18 @@ hello-world-rest-api-75466dc657-9tbcr   1/1     Running   0          24m   10.0.
 hello-world-rest-api-75466dc657-p929g   1/1     Running   0          3s    10.0.2.12   gke-seyda-test-cluster-default-pool-7c83051e-hhzs   <none>           <none>
 hello-world-rest-api-75466dc657-prgqx   1/1     Running   0          2m    10.0.0.6    gke-seyda-test-cluster-default-pool-7c83051e-qj7p   <none>           <none>
 
-IP changed.
+remark that -> IP changed.
+
+kubectl get services
+NAME                   TYPE           CLUSTER-IP   EXTERNAL-IP    PORT(S)          AGE
+hello-world-rest-api   LoadBalancer   10.4.1.133   35.188.37.44   8080:32253/TCP   5h3m
+kubernetes             ClusterIP      10.4.0.1     <none>         443/TCP          33h
+
+ClusterIP, can only be accessed from inside the cluster
+we will not be able to access this service from outside the cluster
+there is no external IP, <none>
+if we have any services which are directly consumed inside our cluster,
+we can have them use a ClusterIP
 
 ------------------------------
 ------------------------------
