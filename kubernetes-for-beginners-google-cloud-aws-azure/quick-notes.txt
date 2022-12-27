@@ -187,6 +187,62 @@ kubectl get componentstatuses
 GCP GCE GKE regions & zones
 
 ------------------------------
+
+docker run -p 8080:8080 seydanurdemir/hello-world-rest-api:0.0.4-SNAPSHOT
+docker push seydanurdemir/hello-world-rest-api:0.0.4-SNAPSHOT
+
+------------------------------
+
+gcloud init
+gcloud auth login
+
+------------------------------
+
+powershell
+
+$ Get-ExecutionPolicy
+> Restricted
+$ Set-ExecutionPolicy AllSigned
+$ Get-ExecutionPolicy
+> AllSigned
+
+cmd
+
+$ choco
+> Chocolatey v1.2.1
+
+Step #1
+
+$ choco install kubernetes-cli
+> Chocolatey installed 1/1 packages.
+  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+
+Step #2
+
+$ kubectl version --client
+> Client Version: version.Info{Major:"1", Minor:"22", 
+  GitVersion:"v1.22.5", GitCommit:"5c99e2ac2ff9a3c549d9ca665e7bc05a3e18f07e", 
+  GitTreeState:"clean", BuildDate:"2021-12-16T08:38:33Z", 
+  GoVersion:"go1.16.12", Compiler:"gc", Platform:"windows/amd64"}
+
+Step #3
+
+# If you're using cmd.exe, run: cd %USERPROFILE%
+$ cd ~
+$ mkdir .kube
+$ cd .kube
+
+Step #4
+
+New-Item config -type file
+
+------------------------------
+
+gcloud components install gke-gcloud-auth-plugin
+
+------------------------------
+------------------------------
+------------------------------
 ------------------------------
 ------------------------------
 ------------------------------
