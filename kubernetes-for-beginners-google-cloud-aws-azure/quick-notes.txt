@@ -163,4 +163,30 @@ if we have any services which are directly consumed inside our cluster,
 we can have them use a ClusterIP
 
 ------------------------------
+
+Master Node
+
+API Server (kube-apiserver)
+Distributed Database (etcd)
+Scheduler (kube-scheduler)
+Controller Manager (kube-controller-manager)
+
+Worker Node / NODE
+
+Node Agent (kubelet) ; monitor whats happenint on the node, communicate back master node
+Networking Component (kube-proxy)
+Container Runtime (CRI container runtime interface - docker, rkt rocket cli etc)
+PODS (multiple pods running containers)
+
+OCI open container interface
+
+kubectl get componentstatuses
+
+------------------------------
+
+GCP GCE GKE regions & zones
+
+------------------------------
+------------------------------
+------------------------------
 ------------------------------
