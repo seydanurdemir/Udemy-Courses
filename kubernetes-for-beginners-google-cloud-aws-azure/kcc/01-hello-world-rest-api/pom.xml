@@ -24,6 +24,7 @@
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 		<!-- Needed by io.fabric8 docker-maven-plugin -->
 		<jar>${project.build.directory}/${project.build.finalName}.jar</jar>
+		<dockerfile.maven.version>1.4.10</dockerfile.maven.version>
 	</properties>
 
 	<dependencies>
@@ -44,6 +45,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -57,7 +59,7 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.4.6</version>
+				<version>${dockerfile.maven.version}</version>
 				<executions>
 					<execution>
 						<id>default</id>
