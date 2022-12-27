@@ -241,6 +241,11 @@ New-Item config -type file
 gcloud components install gke-gcloud-auth-plugin
 
 ------------------------------
+
+gcloud init
+gcloud auth login
+gcloud container clusters get-credentials seyda-test-cluster --zone us-central1-a --project airy-charmer-372622
+
 ------------------------------
 ------------------------------
 ------------------------------
