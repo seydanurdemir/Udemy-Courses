@@ -348,6 +348,19 @@ sessionAffinity: ClientIP
 kubectl apply -f applyToDoApp.yaml
 kubectl get all
 
+kubectl get pods --all-namespaces
+kubectl get pods -l app=todo-web-application-h2
+
+kubectl get services --all-namespaces
+kubectl get services --all-namespaces --sort-by=.spec.type
+
+sorted as ClusterIP, LoadBalancer, NodePortcccccc
+
+kubectl get services --all-namespaces --sort-by=.metadata.name
+
+kubectl get deployment todo-web-application-h2 -o yaml > deploymentToDoApp.yaml
+kubectl get service todo-web-application-h2 -o yaml > serviceToDoApp.yaml
+
 ------------------------------
 ------------------------------
 ------------------------------
