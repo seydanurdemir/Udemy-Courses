@@ -300,5 +300,31 @@ kubectl get all
 needed to change the nodePort of the service
 kubectl apply -f apply.yaml
 
+old link : http://35.188.37.44:8080/
+new link : http://34.70.158.39:8080/
+
+curl 34.70.158.39:8080
+
+------------------------------
+
+kubectl diff -f apply.yaml
+watch -n 0.1 curl 35.188.37.44:8080/hello-world
+
+minReadySeconds, reduce release downtime
+
+------------------------------
+
+kind: ReplicaSet
+delete strategy part
+change nodePort
+
+current link : http://35.188.37.44:8080/
+
+curl 35.188.37.44:8080
+
+------------------------------
+------------------------------
+------------------------------
+------------------------------
 ------------------------------
 ------------------------------
