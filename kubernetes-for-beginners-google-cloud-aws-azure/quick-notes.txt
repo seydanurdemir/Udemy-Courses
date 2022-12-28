@@ -289,8 +289,16 @@ kubectl get service hello-world-rest-api -o wide
 kubectl get service hello-world-rest-api -o yaml
 kubectl get service hello-world-rest-api -o yaml > service.yaml
 
+(change content of deployment.yaml, and then;)
+
 kubectl apply -f deployment.yaml
 
 ------------------------------
+
+kubectl delete all -l app=hello-world-rest-api
+kubectl get all
+needed to change the nodePort of the service
+kubectl apply -f apply.yaml
+
 ------------------------------
 ------------------------------
