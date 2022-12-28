@@ -247,7 +247,50 @@ gcloud auth login
 gcloud container clusters get-credentials seyda-test-cluster --zone us-central1-a --project airy-charmer-372622
 
 ------------------------------
+
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=seydanurdemir/hello-world-rest-api:0.0.4-SNAPSHOT
+
+$ kubectl rollout history deployment hello-world-rest-api
+> deployment.apps/hello-world-rest-api
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+3         <none>
+4         <none>
+
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=seydanurdemir/hello-world-rest-api:0.0.4-SNAPSHOT --record
+
+$ kubectl rollout history deployment hello-world-rest-api
+> deployment.apps/hello-world-rest-api
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+3         <none>
+4         kubectl set image deployment hello-world-rest-api hello-world-rest-api=seydanurdemir/hello-world-rest-api:0.0.4-SNAPSHOT --record=true
+
+kubectl rollout status deployment hello-world-rest-api
+kubectl rollout undo deployment hello-world-rest-api --to-revision=3
+
+kubectl get pods
+kubectl logs hello-world-rest-api-79ff564454-d4qwq
+
+GCP CLI
+watch curl http://35.188.37.44:8080/hello-world
+
 ------------------------------
+
+kubectl get deployment hello-world-rest-api
+kubectl get deployment hello-world-rest-api -o wide
+kubectl get deployment hello-world-rest-api -o yaml
+kubectl get deployment hello-world-rest-api -o yaml > deployment.yaml
+
+kubectl get service hello-world-rest-api
+kubectl get service hello-world-rest-api -o wide
+kubectl get service hello-world-rest-api -o yaml
+kubectl get service hello-world-rest-api -o yaml > service.yaml
+
+kubectl apply -f deployment.yaml
+
 ------------------------------
 ------------------------------
 ------------------------------

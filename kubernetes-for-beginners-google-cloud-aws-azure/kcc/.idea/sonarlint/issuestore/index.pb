@@ -11,7 +11,3 @@ R
 "01-hello-world-rest-api/Dockerfile,8\6\868c485650a87e5a7ad9e838154e7095518d12ce
 O
 01-hello-world-rest-api/pom.xml,9\5\95a85270482796a27ba04fe60b15747bc43e13c1
-£
-s01-hello-world-rest-api/src/main/java/com/in28minutes/rest/webservices/restfulwebservices/HelloWorldController.java,4\c\4ca143b276da29b48b103906c8148d0491e62fe7
-¬
-|01-hello-world-rest-api/src/main/java/com/in28minutes/rest/webservices/restfulwebservices/RestfulWebServicesApplication.java,2\1\21f0e22c74cece5379950d341e9ff267a6ebcac0
