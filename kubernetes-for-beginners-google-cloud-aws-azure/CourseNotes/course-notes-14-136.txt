@@ -1,0 +1,8 @@
+Before You Go - Ensure You Delete All Your Clusters
+Make sure you delete all your clusters right now!
+
+Your free credit is valid for 1 year. Make sure you use it well.
+
+We are sure you had a great time learning Kubernetes with in28Minutes.
+
+Good Luck.
