@@ -324,6 +324,10 @@ curl 35.188.37.44:8080
 
 ------------------------------
 
+mvn clean install
+mvn spring-boot:run
+mvn clean package
+
 http://localhost:8080
 
 in28minutes, dummy
@@ -331,6 +335,8 @@ in28minutes, dummy
 http://localhost:8080/h2-console
 
 jdbc:h2:mem:testdb, sa
+
+docker push seydanurdemir/todo-web-application-h2:0.0.1-SNAPSHOT
 
 ------------------------------
 ------------------------------
