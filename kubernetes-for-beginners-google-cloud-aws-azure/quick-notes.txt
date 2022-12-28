@@ -361,7 +361,26 @@ kubectl get services --all-namespaces --sort-by=.metadata.name
 kubectl get deployment todo-web-application-h2 -o yaml > deploymentToDoApp.yaml
 kubectl get service todo-web-application-h2 -o yaml > serviceToDoApp.yaml
 
+kubectl cluster-info
+kubectl cluster-info dump
+
+kubectl top node
+kubectl top pod
+
+some shortcuts
+
+rs replicaset
+svc service
+kubectl get svc
+ev events
+ns namespaces
+no nodes
+po pods
+
 ------------------------------
+
+docker
+
 ------------------------------
 ------------------------------
 ------------------------------
