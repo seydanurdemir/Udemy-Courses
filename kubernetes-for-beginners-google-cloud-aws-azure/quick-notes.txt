@@ -339,6 +339,15 @@ jdbc:h2:mem:testdb, sa
 docker push seydanurdemir/todo-web-application-h2:0.0.1-SNAPSHOT
 
 ------------------------------
+
+kubectl get all
+kubectl delete all -l app=hello-world-rest-api
+kubectl get all
+
+sessionAffinity: ClientIP
+kubectl apply -f applyToDoApp.yaml
+kubectl get all
+
 ------------------------------
 ------------------------------
 ------------------------------
