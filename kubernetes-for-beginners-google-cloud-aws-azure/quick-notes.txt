@@ -382,5 +382,106 @@ po pods
 docker
 
 ------------------------------
+
+aws free tier
+root user & iam user
+iam, identity and access management
+authentication & authorization
+
+create groups named as Developers authorized by AdministratorAccess
+create a user named as rootname + _dev = seydanurdemir_dev -> normal IAM user
+create another user named as aws-kubernetes-user -> for only access key
+
+download aws cli and eksctl
+aws configure, access id and key
+
+eksctl create cluster --name seydanurdemir-cluster --nodegroup-name seydanurdemir-cluster-node-group  --node-type t2.medium --nodes 3 --nodes-min 3 --nodes-max 7 --managed --asg-access --zones=us-east-1a,us-east-1b
+eksctl create cluster --name seydanurdemir-cluster 
+--nodegroup-name seydanurdemir-cluster-node-group  
+--node-type t2.medium --nodes 3 --nodes-min 3 --nodes-max 7 
+--managed --asg-access 
+--zones=us-east-1a,us-east-1b
+
+seydanurdemir/hello-world-rest-api:0.0.4-SNAPSHOT
+
+kubectl create deployment hello-world-rest-api --image=seydanurdemir/hello-world-rest-api:0.0.4-SNAPSHOT
+kubectl get deployment
+kubectl get replicaset
+kubectl get pod
+
+kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+kubectl get service
+
+link: http://a0c617254444d45cb90996f1daa57eff-1869961138.us-east-1.elb.amazonaws.com:8080/
+
+seydanurdemir/todo-web-application-h2:0.0.1-SNAPSHOT
+
+kubectl create deployment todowebapp-h2 --image=seydanurdemir/todo-web-application-h2:0.0.1-SNAPSHOT
+kubectl expose deployment todowebapp-h2 --type=LoadBalancer --port=8080
+
+link: http://a39f67cdf19b3488b92501288d50e0c8-1741755172.us-east-1.elb.amazonaws.com:8080/login
+
+mysql container; docker pull in28min/todo-web-application-mysql:0.0.1-SNAPSHOT
+
+cd Desktop/aws-yamls
+
+in aws; we need to apply StorageClass
+aws ebs; elastic block store
+
+! needed to add these to deployment.yamls
+"
+  selector:
+    matchLabels:
+      io.kompose.service: todo-web-application
+  selector:
+    matchLabels:
+      io.kompose.service: mysql
+"
+
+kubectl apply -f mysql-database-data-volume-persistentvolumeclaim-aws.yaml,mysql-deployment.yaml,mysql-service.yaml
+
+kubectl apply -f config-map.yaml,secret.yaml,todo-web-application-deployment.yaml,todo-web-application-service.yaml
+
+# did not worked
+echo -n dummytodos | base64
+
+link: http://a057a1e4280844ec8b2ce647e495fe43-1686720758.us-east-1.elb.amazonaws.com:8080/
+
+kubectl delete all -l app=hello-world-rest-api
+kubectl delete all -l app=todowebapp-h2
+kubectl delete all -l io.kompose.service=todo-web-application
+kubectl delete all -l io.kompose.service=mysql
+
+microservices
+
+needed to change apiVersion from extensios/v1beta1 to apps/v1
+refs: https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/
+
+kubectl apply -f deployment04.yaml
+
+currency-exchange
+link: http://a5a6949a96d0f435694a19f55fa07137-2119658985.us-east-1.elb.amazonaws.com:8000/
+
+kubectl apply -f deployment05.yaml
+
+currency-conversion
+link: http://a3978fa966184467e8c4032ae96cdbfd-659885946.us-east-1.elb.amazonaws.com:8100/
+
+lets try
+
+link: http://a5a6949a96d0f435694a19f55fa07137-2119658985.us-east-1.elb.amazonaws.com:8000/currency-exchange/from/USD/to/INR
+{"id":10001,"from":"USD","to":"INR","conversionMultiple":65.00,"exchangeEnvironmentInfo":"currency-exchange-5b8786b7f5-jsj4c v1 jsj4c"}
+
+link: http://a3978fa966184467e8c4032ae96cdbfd-659885946.us-east-1.elb.amazonaws.com:8100/currency-conversion/from/USD/to/INR/quantity/10
+{"id":10001,"from":"USD","to":"INR","conversionMultiple":65.00,"quantity":10,"totalCalculatedAmount":650.00,"exchangeEnvironmentInfo":"currency-exchange-5b8786b7f5-jsj4c v1 jsj4c","conversionEnvironmentInfo":"currency-conversion-5d77dd45b7-5lc7h v1 5lc7h"}
+
+kubectl delete all -l app=currency-conversion
+kubectl delete all -l app=currency-exchange
+
+kubectl get ingress
+kubectl delete ingress xxx
+
+eksctl delete cluster --name seydanurdemir-cluster
+
 ------------------------------
 ------------------------------
