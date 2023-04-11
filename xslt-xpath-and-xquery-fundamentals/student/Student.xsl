@@ -23,6 +23,8 @@
 									<xsl:when test="Score>=90">A</xsl:when>
 									<xsl:when test="Score>=80">B</xsl:when>
 									<xsl:when test="Score>=70">C</xsl:when>
+									<xsl:when test="Score>=60">D</xsl:when>
+                                    <xsl:otherwise>F</xsl:otherwise>
 								</xsl:choose>
 							</td>
 						</tr>
