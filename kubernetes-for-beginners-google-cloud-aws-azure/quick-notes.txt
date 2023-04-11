@@ -383,6 +383,8 @@ docker
 
 ------------------------------
 
+aws
+
 aws free tier
 root user & iam user
 iam, identity and access management
@@ -484,4 +486,9 @@ kubectl delete ingress xxx
 eksctl delete cluster --name seydanurdemir-cluster
 
 ------------------------------
+
+azure
+
+cloud shell
+
 ------------------------------
